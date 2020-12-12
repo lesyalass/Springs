@@ -36,6 +36,58 @@ Model::Model(int width, int height, int sphereNumber, float deltaT)
 
 }
 
+Model::~Model()
+{
+    delete[] spheres;
+    delete[] springs;
+}
+
+Model::Model()
+{
+    spheres = nullptr;
+    springs = nullptr;
+}
+
+
+Model& Model::operator=(const Model& other)
+{
+    if (this != &other)
+    {
+        this->boxSizeX = other.boxSizeX;
+        this->boxSizeY = other.boxSizeY;
+        this->dt = other.dt;
+        this->sphereN = other.sphereN;
+        this->springN = other.springN;
+        if (spheres != nullptr)
+        {
+            delete[] spheres;
+        }
+        if (springs != nullptr)
+        {
+            delete[] springs;
+        }
+        spheres = new Sphere[sphereN];
+        springs = new Spring[springN];
+
+        for(int i = 0; i < sphereN; i++)
+        {
+            spheres[i] = other.spheres[i];
+        }
+        int spr = 0;
+        for(int i = 0; i < sphereN; i++)
+        {
+            for(int j = i + 1; j < sphereN; j++)
+            {
+                springs[spr] = other.springs[spr];
+                springs[spr].first = &spheres[i];
+                springs[spr].second = &spheres[j];
+                spr++;
+            }
+        }
+    }
+    return *this;
+}
+
 void Model::Update()
 {
     for (int i = 0; i < sphereN; i++)

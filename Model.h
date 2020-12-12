@@ -26,9 +26,10 @@ struct Spring
 class Model
 {
     public:
-        Model() = default;
+        Model();
         Model(int width, int height, int sphereNumber, float deltaT);
-        ~Model() = default;
+        Model& operator=(const Model& other);
+        ~Model();
         void Update();
         Vector GetSpherePosition(int sphereID);
         float GetSphereRadius(int sphereID);

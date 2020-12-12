@@ -15,6 +15,13 @@ MainWindow::MainWindow(int width, int height, int sphereNumber)
     lines = new SFLine[model.GetSpringsNumber()];
 }
 
+MainWindow::~MainWindow()
+{
+    delete[] circles;
+    delete[] lines;
+    delete window;
+}
+
 int MainWindow::Start()
 {
     int step = 0;

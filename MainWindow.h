@@ -14,7 +14,7 @@ class MainWindow
     public:
         MainWindow() = default;
         MainWindow(int width, int height, int sphereNumber);
-        ~MainWindow() = default;
+        ~MainWindow();
         int Start();
     private:
         void UpdateWindow();
