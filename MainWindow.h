@@ -13,14 +13,16 @@ class MainWindow
 {
     public:
         MainWindow() = default;
-        MainWindow(int width, int height, int N);
+        MainWindow(int width, int height, int sphereNumber);
         ~MainWindow() = default;
         int Start();
     private:
         void UpdateWindow();
         void UpdateModel();
-        sf::RenderWindow window;
+        sf::RenderWindow *window;
+        sf::Texture texture;
         sf::CircleShape *circles;
         SFLine *lines;
         Model model;
+
 }; 
